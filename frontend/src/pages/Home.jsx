@@ -9,7 +9,7 @@ const Home = () => {
         {/* Content on the Left */}
         <div className="lg:w-1/2 text-center lg:text-left">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-blue-700 mb-6">
-            Welcome to BetSaleel Tours!
+            Welcome to BetSaleel Tour!
           </h1>
           <p className="text-lg sm:text-xl lg:text-2xl text-gray-700 mb-8">
             Embark on an unforgettable adventure through the heart of Cape Town. Explore breathtaking landscapes, vibrant city life, and hidden gems with our expert guides. Every moment is an adventure waiting to be discovered.
