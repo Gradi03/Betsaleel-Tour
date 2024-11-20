@@ -9,7 +9,7 @@ import airport from '../assets/images/airport.png';
 import Hotel from '../assets/images/hotel.png'; 
 import aquiri from '../assets/images/aquiri.png'; 
 import garden from '../assets/images/garden.png'; 
-import waterfront from '../assets/images/waterfront.png'; 
+import va from '../assets/images/va.png'; 
 import table from '../assets/images/table.png'; 
 import Mall from '../assets/images/Mall.png'; 
 import winelands from '../assets/images/winelands.png'; 
@@ -38,7 +38,7 @@ const tours = [
   {
     title: 'Victoria & Alfred Waterfront Transport',
     description: 'Get a ride to the lively V&A Waterfront, with access to shops, dining, and views of Table Mountain.',
-    image: waterfront,
+    image: va,
   },
   {
     title: 'Table Mountain Transportation Tour',
