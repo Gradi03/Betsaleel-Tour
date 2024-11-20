@@ -1,5 +1,5 @@
 import React from 'react';
-import capetown1 from '../assets/images/capetown1.png'; // Replace with your desired image
+import CT from '../assets/images/CT.jpg'; // Replace with your desired image
 
 const Home = () => {
   return (
@@ -27,7 +27,7 @@ const Home = () => {
         {/* Image on the Right */}
         <div className="lg:w-1/2 mt-8 lg:mt-0">
           <img
-            src={capetown1}
+            src={CT}
             alt="Cape Town"
             className="w-full h-auto rounded-lg shadow-lg transform transition duration-300 ease-in-out hover:scale-105"
             style={{ objectFit: 'cover' }}
