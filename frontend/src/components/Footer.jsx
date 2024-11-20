@@ -8,7 +8,7 @@ const Footer = () => {
         
         {/* Contact Info */}
         <div className="text-start md:text-left md:mb-0 ">
-          <h2 className="text-3xl font-semibold text-yellow-400 mb-3">BetSaleel Tours</h2>
+          <h2 className="text-3xl font-semibold text-yellow-400 mb-3">BetSaleel Tour</h2>
           <p className="text-sm md:text-base mb-3">Location: Cape Town, South Africa</p>
           <p className="text-sm md:text-base mb-3">
             Email: <a href="mailto:betsaleeltour@gmail.com" className="text-teal-300 hover:text-teal-400 transition duration-300">betsaleeltour@gmail.com</a>
