@@ -14,16 +14,12 @@ const BookingForm = () => {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
-// updates the formData state when the user types something in the form fields
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Form validation function
-  //  checks the formData state for any validation errors and returns an object with error messages
-  const validate = () => {
+  const validateForm = () => {
     const newErrors = {};
     if (!formData.name) newErrors.name = 'Name is required.';
     if (!formData.email) newErrors.email = 'Email is required.';
@@ -33,11 +29,8 @@ const BookingForm = () => {
     return newErrors;
   };
 
-  // Handle form submission
-  // sends a POST request to an API endpoint, and displays a success or error message using the Swal library
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const validationErrors = validate();
+  const handleSubmit = async () => {
+    const validationErrors = validateForm();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
@@ -45,19 +38,16 @@ const BookingForm = () => {
 
     setLoading(true);
 
-    const form = new FormData();
-    form.append('name', formData.name);
-    form.append('email', formData.email);
-    form.append('phone', formData.phone);
-    form.append('date', formData.date);
-    form.append('passengers', formData.passengers);
-    form.append('requests', formData.requests);
-    form.append('access_key', '43bbe8ef-4a02-44ee-b195-cbfdfcf4cbd8');
+    const payload = {
+      ...formData,
+      access_key: '7e4f0321-13d5-4ff4-867e-925ed6519804',
+    };
 
     try {
-      const response = await fetch('https://api.web3forms.com/submit', {
+      const response = await fetch('https://your-api-endpoint.com/submit', {
         method: 'POST',
-        body: form,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
       });
 
       const result = await response.json();
@@ -67,10 +57,9 @@ const BookingForm = () => {
           title: 'Success!',
           text: 'Your booking has been submitted successfully.',
           icon: 'success',
-          confirmButtonText: 'Ok',
+          confirmButtonText: 'OK',
         });
-
-        // Clear form
+        // Reset form data and errors
         setFormData({
           name: '',
           email: '',
@@ -81,17 +70,12 @@ const BookingForm = () => {
         });
         setErrors({});
       } else {
-        Swal.fire({
-          title: 'Error!',
-          text: result.message,
-          icon: 'error',
-          confirmButtonText: 'Try Again',
-        });
+        throw new Error(result.message || 'Submission failed.');
       }
-    } catch {
+    } catch (error) {
       Swal.fire({
         title: 'Error!',
-        text: 'There was an issue with the submission. Please try again later.',
+        text: error.message || 'There was an issue with the submission.',
         icon: 'error',
         confirmButtonText: 'Try Again',
       });
@@ -101,10 +85,9 @@ const BookingForm = () => {
   };
 
   return (
-    <div id='book' className="max-w-lg mx-auto bg-white shadow-md rounded-lg p-8">
+    <div id="book" className="max-w-lg mx-auto bg-white shadow-md rounded-lg p-8">
       <h2 className="text-3xl font-bold text-center mb-6 text-indigo-600">Book Your Tour</h2>
-
-      <form onSubmit={handleSubmit}>
+      <form>
         <div className="mb-4">
           <label htmlFor="name" className="block text-gray-700 font-medium mb-2">Name</label>
           <input
@@ -198,8 +181,9 @@ const BookingForm = () => {
         </div>
 
         <button
-          type="submit"
+          type="button"
           disabled={loading}
+          onClick={handleSubmit}
           className="w-full bg-indigo-600 text-white py-3 rounded-lg text-lg font-semibold hover:bg-indigo-700 transition duration-200"
         >
           {loading ? 'Submitting...' : 'Book Now'}
