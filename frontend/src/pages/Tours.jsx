@@ -1,29 +1,30 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet'; // Import react-helmet
 import TourCard from '../components/TourCard';
 import BookingForm from '../components/BookingForm';
 
 // Import images
-import capetown from '../assets/images/capetown.png'; 
-import capePoint from '../assets/images/capePoint.png'; 
-import airport from '../assets/images/airport.png'; 
-import Hotel from '../assets/images/hotel.png'; 
-import aquiri from '../assets/images/aquiri.png'; 
-import garden from '../assets/images/garden.png'; 
-import va from '../assets/images/va.png'; 
+import capetown from '../assets/images/capetown.jpg'; 
+import capepoint from '../assets/images/capepoint.jpg'; 
+import airport from '../assets/images/airport.jpg'; 
+import hotel from '../assets/images/hotel.jpg'; 
+import aquiri from '../assets/images/aquiri.jpg'; 
+import garden from '../assets/images/garden.jpg'; 
+import waterfront from '../assets/images/waterfront.jpg'; 
 import table from '../assets/images/table.png'; 
-import Mall from '../assets/images/Mall.png'; 
+import mall from '../assets/images/mall.jpg'; 
 import winelands from '../assets/images/winelands.png'; 
 
 const tours = [
   {
     title: 'Cape Town Hotel Transportation Tour',
     description: 'Enjoy a seamless, comfortable journey to luxurious hotels with breathtaking Cape Town views.',
-    image: Hotel,
+    image: hotel,
   },
   {
     title: 'Cape Point Transportation Tour',
     description: 'Travel comfortably to Cape Point and immerse yourself in its stunning landscapes and scenic views.',
-    image: capePoint,
+    image: capepoint,
   },
   {
     title: 'Aquila Safari Transportation Tour',
@@ -38,7 +39,7 @@ const tours = [
   {
     title: 'Victoria & Alfred Waterfront Transport',
     description: 'Get a ride to the lively V&A Waterfront, with access to shops, dining, and views of Table Mountain.',
-    image: va,
+    image: waterfront,
   },
   {
     title: 'Table Mountain Transportation Tour',
@@ -53,7 +54,7 @@ const tours = [
   {
     title: 'Mall Transfer',
     description: 'Convenient transportation to nearby malls for shopping and leisure time.',
-    image: Mall,
+    image: mall,
   },
   {
     title: 'Cape Town City Transportation Tour',
@@ -82,29 +83,43 @@ const Tours = () => {
   };
 
   return (
-    <div id="tours" className="p-4 bg-gray-100">
-      {showBookingForm ? (
-        <div>
-          <button
-            onClick={handleBack}
-            className="mb-4 text-blue-600 underline hover:text-blue-800"
-          >
-            Back to Tours
-          </button>
-          <h1 className="text-2xl font-bold text-center mb-4">{selectedTour.title}</h1>
-          <BookingForm />
-        </div>
-      ) : (
-        <>
-          <h1 className="text-4xl font-bold text-center mb-8 text-indigo-600">Our Tours</h1>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {tours.map((tour, index) => (
-              <TourCard key={index} tour={tour} onBookNow={() => handleBookNow(tour)} />
-            ))}
+    <>
+      <Helmet>
+        <meta
+          name="description"
+          content="Explore a range of personalized Cape Town tours, from scenic drives to safari adventures. Book comfortable transportation to top destinations like Table Mountain, V&A Waterfront, and more."
+        />
+        <meta
+          name="keywords"
+          content="Cape Town tours, transportation services Cape Town, Table Mountain tour, Cape Point tour, Garden Route tour, Victoria Alfred Waterfront, safari tours, Aquila Safari, Cape Winelands tour, Cape Town city tour"
+        />
+        <meta name="robots" content="index, follow" />
+        <title>Cape Town Tours - Explore with BestSaleel Tours</title>
+      </Helmet>
+      <div id="tours" className="p-4 bg-gray-100">
+        {showBookingForm ? (
+          <div>
+            <button
+              onClick={handleBack}
+              className="mb-4 text-blue-600 underline hover:text-blue-800"
+            >
+              Back to Tours
+            </button>
+            <h1 className="text-2xl font-bold text-center mb-4">{selectedTour.title}</h1>
+            <BookingForm />
           </div>
-        </>
-      )}
-    </div>
+        ) : (
+          <>
+            <h1 className="text-4xl font-bold text-center mb-8 text-indigo-600">Our Tours</h1>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {tours.map((tour, index) => (
+                <TourCard key={index} tour={tour} onBookNow={() => handleBookNow(tour)} />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+    </>
   );
 };
 
